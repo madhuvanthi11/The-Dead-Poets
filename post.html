@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="post-form-container">
+        <h1>Create a New Post</h1>
+        <form action="{{ url_for('post') }}" method="post" enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title (optional)">
+            <input type="text" name="author" placeholder="Author (optional)">
+            <textarea name="content" rows="8" cols="80" placeholder="Write your poem here" required></textarea>
+             <label for="background_type">Background Type:</label>
+            <select name="background_type" id="background_type" onchange="toggleBackgroundInput()">
+                <option value="color">Color</option>
+                <option value="gradient">Gradient</option>
+                 <option value="image">Image</option>
+                 <option value="gif">GIF</option>
+                 <option value="none" selected>None</option>
+            </select>
+           <div id="background_input_container">
+                <div id="color_input">
+                    <input type="color" name="background_value" >
+                </div>
+                <div id="gradient_input">
+                     <input type="color" name="background_value_grad1" value="#FFFFFF">
+                     <input type="color" name="background_value_grad2" value="#FFFFFF">
+                 </div>
+                <div id="image_input">
+                     <input type="file" name="background_image" accept="image/*">
+                </div>
+               <div id="gif_input">
+                     <input type="file" name="background_image" accept="image/gif">
+                </div>
+            </div>
+           <div>
+                <p>Select Topic(s):</p>
+                  {% for topic in topics %}
+                       <label>
+                            <input type="checkbox" name="topics" value="{{ topic.id }}">
+                            {{ topic.topic_name }}
+                        </label>
+                   {% endfor %}
+            </div>
+            
+            <button type="submit">Post</button>
+        </form>
+    </div>
+<script>
+function toggleBackgroundInput() {
+  const backgroundType = document.getElementById("background_type").value;
+  const backgroundInputContainer = document.getElementById("background_input_container");
+  const colorInput = document.getElementById("color_input");
+   const gradientInput = document.getElementById("gradient_input");
+   const imageInput = document.getElementById("image_input");
+    const gifInput = document.getElementById("gif_input");
+
+
+    backgroundInputContainer.style.display = backgroundType === 'none' ? 'none' : 'block';
+    colorInput.style.display = backgroundType === 'color' ? 'block' : 'none';
+    gradientInput.style.display = backgroundType === 'gradient' ? 'block' : 'none';
+    imageInput.style.display = backgroundType === 'image' ? 'block' : 'none';
+    gifInput.style.display = backgroundType === 'gif' ? 'block' : 'none';
+  
+
+     document.querySelector('input[name="background_value"]').addEventListener('input', function(){
+       if (backgroundType == 'color'){
+        document.querySelector('input[name="background_value"]').value = document.querySelector('input[name="background_value"]').value
+       }
+      
+     });
+
+     document.querySelector('input[name="background_value_grad1"]').addEventListener('input', function(){
+        if (backgroundType == 'gradient'){
+         let color1 = document.querySelector('input[name="background_value_grad1"]').value;
+         let color2 = document.querySelector('input[name="background_value_grad2"]').value;
+         document.querySelector('input[name="background_value"]').value = color1 + ',' + color2
+         }
+    });
+    
+       document.querySelector('input[name="background_value_grad2"]').addEventListener('input', function(){
+        if (backgroundType == 'gradient'){
+             let color1 = document.querySelector('input[name="background_value_grad1"]').value;
+             let color2 = document.querySelector('input[name="background_value_grad2"]').value;
+           document.querySelector('input[name="background_value"]').value = color1 + ',' + color2
+         }
+    });
+}
+</script>
+
+{% endblock %}

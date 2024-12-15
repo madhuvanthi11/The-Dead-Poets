@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="profile-page">
+        {% if user %}
+            <div class="profile-header">
+                <img src="{{ url_for('static', filename = user.profile_pic) }}" alt="User Profile Picture" class="profile-picture">
+                 <div class="profile-info">
+                        <h2>{{ user.username }}</h2>
+                        <p class="bio">Bio: {{ user.bio or 'No bio available' }}</p>
+                        <p>Joined: {{ user.joined_date }}</p>
+                </div>
+             </div>
+            <div class="profile-posts-container">
+                  <h2 class="section-title">Your Posts</h2>
+                 {% for post in posts %}
+                     <div class="post-card" {% if post.background_type == 'color' %}
+                     style="background-color: '{{ post.background_value }}';
+                     "{% elif post.background_type == 'gradient' %} 
+                     style="background-image: linear-gradient(to bottom, '{{ post.background_value.split(',')[0] }}', 
+                     '{{ post.background_value.split(',')[1] }}');
+                     "{% elif post.background_type == 'image' %}style="background-image: url('/uploads/{{ post.background_value }}');"{% elif post.background_type == 'gif' %} style="background-image: url('/uploads/{{ post.background_value }}');"{% endif %}>
+                        <div class="post-content">
+                           <h3>{{ post.title or "Untitled" }}</h3>
+                            <p class="author-date">By {{ post.author or user.username }} - {{ post.created_at.strftime('%Y-%m-%d') }}</p>
+                            <p class="poem-text">{{ post.content }}</p>
+                        </div>
+                    </div>
+                  {% endfor %}
+                   <h2 class="section-title">Posts You've Liked</h2>
+                   {% for post in liked_posts %}
+                    <div class="post-card" {% if post.background_type == 'color' %}
+                    style="background-color: '{{ post.background_value }}';
+                    "{% elif post.background_type == 'gradient' %} style="background-image: linear-gradient(to bottom, 
+                    '{{ post.background_value.split(',')[0] }}', '{{ post.background_value.split(',')[1] }}');
+                    "{% elif post.background_type == 'image' %}style="background-image: url('/uploads/{{ post.background_value }}');"{% elif post.background_type == 'gif' %} style="background-image: url('/uploads/{{ post.background_value }}');"{% endif %}>
+                       <div class="post-content">
+                            <h3>{{ post.title or "Untitled" }}</h3>
+                            <p class="author-date">By {{ post.author or post.username }} - {{ post.created_at.strftime('%Y-%m-%d') }}</p>
+                            <p class="poem-text">{{ post.content }}</p>
+                       </div>
+                   </div>
+                   {% endfor %}
+                   <h2 class="section-title">Comments you've made</h2>
+                 {% for comment in comments %}
+                      <div class="comment-card">
+                           <p>On post: {{ comment.title }}</p>
+                            <p>Comment: {{ comment.comment }} - {{ comment.created_at.strftime('%Y-%m-%d') }}</p>
+                       </div>
+                   {% endfor %}
+                
+            </div>
+        {% else %}
+        <div class="login-container">
+            <h2>Login</h2>
+                <form action="{{ url_for('login') }}" method="post">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+           <div class="signup-text">
+                 <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign up</a></p>
+            </div>
+          </div>
+        {% endif %}
+    </div>
+{% endblock %}

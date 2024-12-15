@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1 class="main-title">Browse The Topics</h1>
+        <div class="topics-container">
+            {% for topic in topics %}
+                <a class="topic-card" href="{{ url_for('view_topic', topic_id = topic.id) }}">
+                <p>{{ topic.topic_name }}</p>
+                </a>
+             {% endfor %}
+        </div>
+{% endblock %}

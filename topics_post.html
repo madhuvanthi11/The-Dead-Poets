@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1 class="main-title">Posts on {{ topic.topic_name }}</h1>
+    <div class="posts-container">
+        {% for post in posts %}
+        <div class="post-card" {% if post.background_type == 'color' %}style="background-color: {{ post.background_value }};"
+        {% elif post.background_type == 'gradient' %} 
+        style="background-image: linear-gradient(to bottom, 
+        '{{ post.background_value.split(',')[0] }}', 
+        '{{ post.background_value.split(',')[1] }}');
+        "{% elif post.background_type == 'image' %}style="background-image: url('/uploads/{{ post.background_value }}');"{% elif post.background_type == 'gif' %} style="background-image: url('/uploads/{{ post.background_value }}');"{% endif %}>                <div class="post-content">
+                     <h3>{{ post.title or "Untitled" }}</h3>
+                    <p class="author-date">By {{ post.author or post.username }} - {{ post.created_at.strftime('%Y-%m-%d') }}</p>
+                    <p class="poem-text">{{ post.content }}</p>
+                </div>
+                <div class="actions">
+                    <form action="{{ url_for('like_post', post_id = post.id) }}" method="post">
+                         <button class="like-button"><img src="{{ url_for('static', filename = 'heart.png') }}" alt="Like button"></button>
+                    </form>
+                    <form action="{{ url_for('comment_post', post_id = post.id) }}" method="post" class="comment-form">
+                         <input type="text" name="comment" placeholder="Add a comment" class="comment-input">
+                         <button type="submit" class="comment-button">Comment</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

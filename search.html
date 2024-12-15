@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1 class="main-title">Search Users</h1>
+        <div class="search-container">
+            <form method="post">
+                <input type="text" name="search_term" placeholder="Search for users" required>
+                <button type="submit">Search</button>
+            </form>
+             {% if users %}
+             
+            <div class="search-results">
+                {% for user in users %}
+                    <div class="user-card">
+                        <img src="{{ url_for('static', filename = user.profile_pic) }}" alt="User Profile Picture" class="profile-picture">
+                        <a href="{{ url_for('profile', user_id=user.id) }}">{{ user.username }}</a>
+                    </div>
+                {% endfor %}
+           </div>
+             {% endif %}
+       </div>
+{% endblock %}
