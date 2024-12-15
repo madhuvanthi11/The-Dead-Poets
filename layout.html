@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dead Poets</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.google.com/specimen/Mountains+of+Christmas?query=moun" rel="stylesheet">
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}" class="nav-item">Home</a>
+            <a href="{{ url_for('topics') }}" class="nav-item">Topics</a>
+            <a href="{{ url_for('search') }}" class="nav-item">Search</a>
+            {% if session.user_id %}
+            <a href="{{ url_for('profile', user_id = session.user_id) }}" class="nav-item">Profile</a>
+             <a href="{{ url_for('logout') }}" class="nav-item">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}" class="nav-item">Login</a>
+            <a href="{{ url_for('signup') }}" class="nav-item">Signup</a>
+            {% endif %}
+           <a href="{{ url_for('post') }}" class="nav-item">Post</a>
+        </nav>
+    </header>
+    <main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flashes">
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+                 {% endfor %}
+            </div>
+            {% endif %}
+    {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+       <p>© 2024 The Dead Poets</p>
+    </footer>
+</body>
+</html>
