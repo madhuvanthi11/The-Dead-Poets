@@ -1,0 +1,399 @@
+body {
+    font-family: 'Inconsolata', monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #01204E;
+    color: #f6dcac;
+}
+
+/* Navigation Bar */
+header {
+    background-color: #f85525;
+    padding: 1rem;
+    text-align: center;
+     border-bottom: 5px dotted #028391;
+
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #01204E;
+    font-weight: bold;
+      padding: 8px;
+    border-radius: 5px;
+    background-color: #f6dcac;
+      transition: background-color 0.3s;
+       box-shadow: 2px 2px 2px #028391;
+}
+
+nav a:hover {
+   background-color: #faa968;
+}
+
+/* Main Content Styling */
+main {
+    padding: 20px;
+      text-align: center;
+
+}
+main h1 {
+    font-family: 'Mountains of Christmas', cursive;
+    color: #F85525;
+      margin-bottom: 30px;
+
+}
+
+.posts-container, .topics-container {
+      display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.post-card {
+     border: 3px solid #faa968;
+      border-radius: 10px;
+    padding: 15px;
+     margin: 15px;
+    width: 300px;
+    display: flex;
+     flex-direction: column;
+       align-items: center;
+
+    background-color: #028391;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.4);
+       position: relative;
+   
+     background-size: cover;
+     background-position: center;
+        word-break: break-word;
+
+
+}
+
+.post-card .actions {
+  display: flex;
+      justify-content: center;
+       margin-top: 15px;
+
+}
+ .post-card  h3{
+   font-family: 'Mountains of Christmas', cursive;
+       margin-bottom: 5px;
+ }
+
+
+.post-card .poem-text {
+    text-align: left;
+    margin: 0;
+  line-height: 1.4;
+      word-wrap: break-word;
+    max-height: 200px; /* Added a maximum height */
+   overflow-y: auto; /* Added scrollbar if the content is taller than max-height */
+
+}
+
+
+.author-date{
+  margin-bottom: 10px;
+   color:  #01204E;
+}
+
+.topic-card {
+    text-decoration: none;
+    background-color: #68c7c1;
+      margin: 15px;
+     width: 150px;
+    text-align: center;
+     border: 2px solid #794a3a;
+        padding: 10px;
+          box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+             border-radius: 5px;
+
+          color: #dd5341;
+
+}
+
+ .search-container form{
+      display: inline-block;
+
+      margin-bottom: 10px;
+ }
+
+
+  .search-container input[type="text"],  .signup-container input[type="text"],.signup-container input[type="password"],.signup-container input[type="email"]
+     , .login-container input[type="text"], .login-container input[type="email"], .login-container input[type="password"]
+     {
+         padding: 10px;
+          margin: 10px;
+         border: 1px solid #DD5341;
+        border-radius: 4px;
+        font-family: 'Inconsolata', monospace;
+          width: 250px;
+
+
+     }
+
+   .search-container button ,  .signup-container button,   .login-container button{
+          padding: 10px 15px;
+    background-color: #F57F5B;
+     border: 1px solid #794a3a;
+        border-radius: 4px;
+    color:  #f6dcac;
+   font-weight: bold;
+       cursor: pointer;
+       transition: background-color 0.3s;
+
+    }
+
+      .search-container button:hover ,   .signup-container button:hover,  .login-container button:hover
+{
+         background-color: #DD5341;
+}
+     .user-card {
+         display: flex;
+         align-items: center;
+         margin-bottom: 5px;
+           margin: 20px;
+
+          padding: 10px;
+        background-color: #68C7C1;
+      border: 2px solid #794A3A;
+            border-radius: 5px;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+       
+    }
+    .user-card a{
+        margin-left: 10px;
+         color: #DD5341;
+        font-weight: bold;
+      text-decoration: none;
+
+    }
+ .user-card a:hover{
+    text-decoration: underline;
+
+ }
+
+ .profile-picture {
+   border-radius: 50%;
+    height: 80px;
+  width: 80px;
+   margin: 10px;
+     border: 2px solid #faa968;
+
+}
+
+
+.profile-header {
+  display: flex;
+    align-items: center;
+    background-color:  #DD5341;
+   padding: 20px;
+  border-bottom: 2px dashed #FACA78;
+
+}
+
+ .profile-info{
+        text-align: left;
+
+ }
+
+
+  .profile-posts-container{
+
+          text-align: center;
+
+  }
+    .profile-posts-container h2 {
+       font-family: 'Mountains of Christmas', cursive;
+           color:  #DD5341;
+   }
+
+
+  .section-title {
+       font-family: 'Mountains of Christmas', cursive;
+          color:  #DD5341;
+     }
+
+    .comment-card {
+
+          background-color:  #68c7c1;
+       padding: 15px;
+      margin: 20px auto;
+           width: 60%;
+
+            border: 2px solid  #794a3a;
+              border-radius: 5px;
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.4);
+      text-align: left;
+     }
+
+        .comment-card p{
+       
+        line-height: 1.4;
+             color:  #DD5341;
+
+
+     }
+     
+       .post-form-container h1 {
+     
+         font-family: 'Mountains of Christmas', cursive;
+        color:  #DD5341;
+     }
+
+
+ .post-form-container{
+   display: flex;
+        justify-content: center;
+         flex-direction: column;
+      width: 60%;
+       margin: 0 auto;
+
+
+}
+
+
+   .post-form-container input[type="text"],   .post-form-container textarea {
+      margin: 10px 0;
+       padding: 10px;
+            font-family: 'Inconsolata', monospace;
+        border-radius: 4px;
+       border: 1px solid #794a3a;
+
+}
+
+ .post-form-container  select {
+           padding: 10px;
+        font-family: 'Inconsolata', monospace;
+     border-radius: 4px;
+           margin: 10px 0;
+
+}
+
+.post-form-container button[type='submit']{
+
+         padding: 10px 15px;
+    background-color: #F57F5B;
+       border-radius: 4px;
+    color:  #f6dcac;
+    border: 1px solid  #794a3a;
+   font-weight: bold;
+       cursor: pointer;
+         transition: background-color 0.3s;
+  margin: 20px 0px;
+
+
+}
+
+.post-form-container  button[type='submit']:hover{
+
+   background-color: #DD5341;
+
+
+}
+
+
+.like-button {
+     background-color: transparent;
+      border: none;
+     padding: 5px;
+      cursor: pointer;
+}
+  .like-button img{
+   width: 30px;
+        height: 30px;
+
+   }
+
+    .comment-input{
+
+      margin: 0 5px 0 0;
+           padding: 5px;
+        border-radius: 5px;
+           font-family: 'Inconsolata', monospace;
+
+    }
+
+    .comment-button{
+
+        padding: 5px 10px;
+        background-color: #FACA78;
+           color: #DD5341;
+      border: 1px solid  #794a3a;
+      cursor: pointer;
+    font-weight: bold;
+}
+    
+   .flashes {
+         margin-top: 20px;
+    }
+
+     .flashes .alert{
+         padding: 10px;
+       margin-bottom: 5px;
+            border-radius: 5px;
+
+   }
+.flashes .alert-success {
+
+background-color: #A8DADC;
+
+color: #2D6A4F;
+}
+
+.flashes .alert-error{
+
+   background-color: #FAA968;
+   color: #D00000;
+}
+  footer {
+      margin-top: 40px;
+        text-align: center;
+            background-color: #2B4448;
+            color: #F85525;
+        padding: 20px;
+    border-top: 5px dashed  #FCB7A8 ;
+
+
+ }
+ 
+
+  .login-container,  .signup-container
+   {
+    width: 400px;
+     background-color: #2b4448;
+      margin: 50px auto;
+       padding: 20px;
+     border-radius: 5px;
+   text-align: center;
+       border: 3px solid #faca78;
+           box-shadow: 3px 3px 5px #758086;
+}
+    .login-container h2, .signup-container h2 {
+      color:  #FAA968;
+     }
+
+
+    .login-text, .signup-text{
+          margin-top: 20px;
+
+    }
+   .login-text a, .signup-text a {
+      color: #F57F5B;
+       text-decoration: none;
+
+   }
+   
+      .login-text a:hover,  .signup-text a:hover{
+     text-decoration: underline;
+
+
+    }
+      .post-form-container  input[type="file"] {
+      
+       margin: 20px 0px;
+
+}
